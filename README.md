@@ -19,11 +19,17 @@ A Model Context Protocol (MCP) server that provides seamless access to the Ample
    npm install
    ```
 
-2. **Set up environment**:
+2. **Configure your API key**:
    ```bash
    cp .env.example .env
-   # Edit .env and add your Pylon API token
    ```
+   
+   Then edit the `.env` file and add your Pylon API token:
+   ```bash
+   PYLON_API_TOKEN=your_actual_api_token_here
+   ```
+   
+   > **Important**: Replace `your_actual_api_token_here` with your real Pylon API token. You can get this token from your Pylon dashboard.
 
 3. **Build the project**:
    ```bash
@@ -53,12 +59,14 @@ Add to your Claude Desktop `mcp.json` configuration:
       "args": ["./dist/src/index.js"],
       "cwd": "/path/to/mcp-pylon-kb",
       "env": { 
-        "PYLON_API_TOKEN": "your-token-here"
+        "PYLON_API_TOKEN": "your_actual_api_token_here"
       }
     }
   }
 }
 ```
+
+> **Note**: Replace `/path/to/mcp-pylon-kb` with the actual path to this project directory, and `your_actual_api_token_here` with your real Pylon API token.
 
 ## Tools
 
