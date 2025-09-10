@@ -135,7 +135,7 @@ export class PylonAPI {
         title: article.title,
         slug: article.slug,
         collectionId: this.AMPLEMARKET_KB_ID,
-        url: `https://knowledge.amplemarket.com/articles/${article.slug}`,
+        url: `https://knowledge.amplemarket.com/articles/${article.identifier}-${article.slug}`,
         updatedAt: article.last_published_at
       }));
 
@@ -173,7 +173,7 @@ export class PylonAPI {
         ]
       }),
       updatedAt: kbArticle.last_published_at,
-      url: `https://knowledge.amplemarket.com/articles/${kbArticle.slug}`
+      url: `https://knowledge.amplemarket.com/articles/${kbArticle.identifier}-${kbArticle.slug}`
     };
 
     this.setCache(cacheKey, result);
