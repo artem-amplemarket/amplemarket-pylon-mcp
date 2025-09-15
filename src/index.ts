@@ -10,7 +10,6 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import 'dotenv/config';
 import { createPylonClient } from './pylon.js';
-import { kbSearchTool, handleKbSearch } from './tools/kbSearch.js';
 import { kbGetArticleTool, handleKbGetArticle } from './tools/kbGetArticle.js';
 import { kbGetCollectionTool, handleKbGetCollection } from './tools/kbGetCollection.js';
 import { kbGetArticlesTool, handleKbGetArticles } from './tools/kbGetArticles.js';
@@ -39,14 +38,12 @@ try {
 
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
-    tools: [kbSearchTool, kbGetArticleTool, kbGetCollectionTool, kbGetArticlesTool],
+    tools: [kbGetArticleTool, kbGetCollectionTool, kbGetArticlesTool],
   };
 });
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   switch (request.params.name) {
-    case 'amplemarket_search':
-      return await handleKbSearch(pylonClient, request.params.arguments);
     case 'amplemarket_get_article':
       return await handleKbGetArticle(pylonClient, request.params.arguments);
     case 'kb_get_collection':

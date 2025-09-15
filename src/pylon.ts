@@ -38,11 +38,6 @@ export interface KnowledgeBaseArticle {
   last_published_at: string;
 }
 
-export interface SearchParams {
-  query: string;
-  limit?: number;
-  collectionId?: string;
-}
 
 interface CacheEntry<T> {
   data: T;
@@ -109,39 +104,6 @@ export class PylonAPI {
     return response.body.json();
   }
 
-  async searchArticles(params: SearchParams): Promise<ArticleSearchResult[]> {
-    const cacheKey = this.getCacheKey('search', params);
-    const cached = this.getFromCache<ArticleSearchResult[]>(cacheKey);
-    if (cached) {
-      return cached;
-    }
-
-    // Always search within the Amplemarket knowledge base
-    const articles = await this.getKnowledgeBaseArticles(this.AMPLEMARKET_KB_ID);
-
-    // Filter articles based on search query
-    const query = params.query.toLowerCase();
-    const filteredArticles = articles.filter(article => {
-      const title = (article.title || '').toLowerCase();
-      const content = (article.current_published_content_html || '').toLowerCase();
-      return title.includes(query) || content.includes(query);
-    });
-
-    // Convert to ArticleSearchResult format and limit results
-    const results: ArticleSearchResult[] = filteredArticles
-      .slice(0, params.limit || 10)
-      .map(article => ({
-        id: article.id,
-        title: article.title,
-        slug: article.slug,
-        collectionId: this.AMPLEMARKET_KB_ID,
-        url: `https://knowledge.amplemarket.com/articles/${article.identifier}-${article.slug}`,
-        updatedAt: article.last_published_at
-      }));
-
-    this.setCache(cacheKey, results);
-    return results;
-  }
 
   async getArticleById(id: string): Promise<Article> {
     const cacheKey = this.getCacheKey('article', { id });
@@ -202,11 +164,8 @@ export class PylonAPI {
     const response = await this.makeRequest(`collections/${id}`);
     const collection = response.collection;
 
-    const articles = await this.searchArticles({ 
-      query: '', 
-      collectionId: id,
-      limit: 100 
-    });
+    // Get articles for this collection (simplified without search)
+    const articles: ArticleSearchResult[] = [];
 
     const result: Collection = {
       id: collection.id,

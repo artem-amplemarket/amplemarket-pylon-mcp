@@ -3,7 +3,7 @@ import { PylonAPI } from '../pylon.js';
 
 export const kbGetArticlesTool: Tool = {
   name: 'amplemarket_get_all_articles',
-  description: 'Get all articles from the Amplemarket knowledge base, separated by publish status. Returns metadata for published and unpublished articles (titles, IDs, slugs, publish status). Use amplemarket_get_article to get full content of specific articles.',
+  description: 'PRIMARY TOOL: Get all articles from the Amplemarket knowledge base. Returns complete list of article titles, IDs, and metadata. Use this first to browse available articles, then use amplemarket_get_article to get full content of specific articles. No search needed - this shows everything available.',
   inputSchema: {
     type: 'object',
     properties: {},

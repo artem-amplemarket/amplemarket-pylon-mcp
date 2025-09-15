@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "amplemarket-kb": {
+      "command": "node",
+      "args": ["/Users/artem/code/pylon_mcp/dist/src/index.js"],
+      "env": {
+        "PYLON_API_TOKEN": "pylon_api_43636f6a912a85785b2568ef4caa6925df685e0a1049396ebc650388331f43fa"
+      }
+    }
+  }
+}

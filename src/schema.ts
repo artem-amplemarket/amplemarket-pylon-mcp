@@ -1,10 +1,5 @@
 import { z } from 'zod';
 
-export const SearchParamsSchema = z.object({
-  query: z.string().min(1, "Query cannot be empty"),
-  limit: z.number().int().min(1).max(100).optional()
-});
-
 export const GetArticleParamsSchema = z.object({
   id: z.string().optional(),
   slug: z.string().optional()
@@ -61,7 +56,6 @@ export const KnowledgeBaseArticleSchema = z.object({
   last_published_at: z.string()
 });
 
-export type SearchParams = z.infer<typeof SearchParamsSchema>;
 export type GetArticleParams = z.infer<typeof GetArticleParamsSchema>;
 export type GetCollectionParams = z.infer<typeof GetCollectionParamsSchema>;
 export type GetKnowledgeBaseArticlesParams = z.infer<typeof GetKnowledgeBaseArticlesParamsSchema>;
