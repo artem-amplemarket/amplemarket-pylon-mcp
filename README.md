@@ -2,6 +2,10 @@
 
 A Model Context Protocol (MCP) server that provides seamless access to the Amplemarket Knowledge Base via Pylon's API. Designed specifically for Claude Desktop and other MCP-compatible clients.
 
+<a href="https://glama.ai/mcp/servers/@artem-amplemarket/amplemarket-pylon-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@artem-amplemarket/amplemarket-pylon-mcp/badge" alt="Amplemarket Knowledge Base Server MCP server" />
+</a>
+
 ## Features
 
 - **🔍 Smart Search**: Search through Amplemarket articles by title and content
